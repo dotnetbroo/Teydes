@@ -1,0 +1,66 @@
+﻿@using Teydes.Service.DTOs.Groups;
+@model GroupForUpdateDto
+@{
+    ViewBag.Tab = 4;
+}
+
+<div class="d-flex flex-column-fluid align-items-start  container-xxl">
+    <div class="content flex-row-fluid">
+        <div class="d-flex flex-column flex-xl-row">
+            <div class="flex-lg-row-fluid ms-lg-10">
+                <div class="card mb-5 mb-xl-10">
+                    <div class="card-header border-0 cursor-pointer" role="button">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bold m-0">Guruh ma'lumotlari</h3>
+                        </div>
+                    </div>
+                    <div class="collapse show">
+                        <form asp-area="" asp-controller="group" asp-action="UpdateGroup" method="post" asp-route-groupId="@ViewBag.Id" enctype="multipart/form-data" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                            <div class="card-body border-top p-9">
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nomi</label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <input type="text" asp-for="Name" placeholder="Ism" class="form-control form-control-lg form-control-solid">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Sig`imi</label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <input type="text" asp-for="Contain" placeholder="Ism" class="form-control form-control-lg form-control-solid">
+                                        <span asp-validation-for="Contain" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                        <span class="required">Kurs</span>
+                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"></i>
+                                    </label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <select asp-for=CourseId class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" data-select2-id="select2-data-7-69qz" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                                            @{
+                                                var courses = ViewBag.Courses;
+                                                foreach (var course in courses)
+                                                {
+                                                    <option value="@course.Id">@course.Name</option>
+                                                }
+                                            }
+                                        </select>
+                                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <a asp-area="" asp-controller="group" asp-action="index" class="btn btn-light btn-active-light-primary me-2">Chiqish</a>
+                                <button type="submit" class="btn btn-primary">O'zgartirish</button>
+                            </div>
+                            <input type="hidden">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

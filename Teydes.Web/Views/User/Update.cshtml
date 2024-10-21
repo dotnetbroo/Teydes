@@ -1,0 +1,143 @@
+﻿@using Teydes.Service.DTOs.Users;
+@model UserForUpdateDto
+@{
+    ViewBag.Tab = 3;
+    ViewBag.Model = Model;
+    var UserId = ViewBag.Id;
+    var groups = ViewBag.Groups;
+}
+
+
+<div class="d-flex flex-column-fluid align-items-start  container-xxl">
+    <div class="content flex-row-fluid">
+        <div class="d-flex flex-column flex-xl-row">
+            <div class="flex-column flex-lg-row-auto w-100 w-xl-300px mb-10">
+                <div class="card card-flush" data-kt-sticky="true" data-kt-sticky-name="account-navbar" data-kt-sticky-offset="{default: false, xl: '80px'}" data-kt-sticky-height-offset="50" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-animation="false" data-kt-sticky-left="auto" data-kt-sticky-top="90px" data-kt-sticky-zindex="95">
+                    <div class="card-header justify-content-end">
+                    </div>
+                    <div class="card-body pt-0 p-10">
+                        <div class="d-flex flex-center flex-column mb-10">
+                            <a class="fs-2 text-gray-800 text-hover-primary fw-bold mb-1">
+                                @{
+                                    if (Model.FirstName.Length + Model.LastName.Length > 15)
+                                    {
+                                        @((Model.FirstName + " " + Model.LastName).Substring(0, 15) + "...")
+                                    }
+
+                                    else
+                                    {
+                                        @(Model.FirstName + " " + Model.LastName)
+                                    }
+                                }
+                            </a>
+                            <div class="fs-6 fw-semibold text-gray-400 mb-2">
+                                @Model.PhoneNumber
+                            </div>
+                        </div>
+                        <ul class="menu menu-column menu-pill menu-title-gray-700 menu-bullet-gray-300 menu-state-bg menu-state-bullet-primary fw-bold fs-5 mb-10">
+                            <li class="menu-item mb-1">
+                                <a class="menu-link px-6 py-4 @(ViewBag.Tabb == 1 ? "active":"")" asp-controller="user" asp-action="GetById" asp-route-userId="@ViewBag.Id">
+                                    <span class="menu-bullet"><span class="bullet"></span></span>
+                                    <span class="menu-title">
+                                        Profile
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="menu-item mb-1">
+                                <a class="menu-link px-6 py-4 @(ViewBag.Tabb == 2 ? "active":"")" asp-area="" asp-controller="user" asp-action="UpdateRedirect" asp-route-userId="@UserId">
+                                    <span class="menu-bullet"><span class="bullet"></span></span>
+                                    <span class="menu-title">
+                                        Sozlamalar
+                                    </span>
+                                </a>
+                            </li>
+                             <li class="menu-item mb-1 @(ViewBag.Tabb == 3 ? "active":"")">
+                            <a class="menu-link px-6 py-4" href="#update-password">
+                            <span class="menu-bullet"><span class="bullet"></span></span>
+                            <span class="menu-title">
+                            Guruhga qo`shish
+                            </span>
+                            </a>
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-lg-row-fluid ms-lg-10">
+                <div class="card mb-5 mb-xl-10">
+                    <div class="card-header border-0 cursor-pointer" role="button">
+                        <div class="card-title m-0">
+                            <h3 class="fw-bold m-0">Profil ma'lumotlari</h3>
+                        </div>
+                    </div>
+                    <div class="collapse show">
+                        <form asp-area="" asp-controller="user" asp-action="UpdateUser" method="post" asp-route-userId="@ViewBag.Id" enctype="multipart/form-data" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                            <div class="card-body border-top p-9">
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Ism</label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <input type="text" asp-for="FirstName" placeholder="Ism" class="form-control form-control-lg form-control-solid">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Familiya</label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <input type="text" asp-for="LastName" placeholder="Familiya" class="form-control form-control-lg form-control-solid">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                        <span class="required">Telefon Raqam</span>
+                                    </label>
+                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                        <input type="tel" asp-for="PhoneNumber" class="form-control form-control-lg form-control-solid" placeholder="+998yyxxxzzzz">
+                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                             <div class="fv-row mb-7 fv-plugins-icon-container">
+                                    <label class="required form-label fw-bold text-dark fs-6">Is Study Foreign</label>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" asp-for="IsStudyForeign" value="true" id="studyForeignYes" >
+                                    <label class="form-check-label" for="studyForeignYes">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" asp-for="IsStudyForeign" value="false" id="studyForeignNo" >
+                                    <label class="form-check-label" for="studyForeignNo">
+                                        No
+                                    </label>
+                            </div>
+                               <span asp-validation-for="IsStudyForeign" class="text-danger"></span>
+                        </div>
+
+                            </div>
+                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                <a asp-area="" asp-controller="user" asp-action="index" class="btn btn-light btn-active-light-primary me-2">Chiqish</a>
+                                <button type="submit" class="btn btn-primary">O'zgartirish</button>
+                            </div>
+                            <input type="hidden">
+                        </form>
+                    </div>
+                </div>
+                 <div id="update-password" class="card mb-5 mb-xl-10">
+                <div class="card-header border-0 cursor-pointer">
+                <div class="card-title m-0">
+                <h3 class="fw-bold m-0">Guruhga qo`shish</h3>
+                </div>
+                </div>
+
+                <div class="collapse show">
+                @await Component.InvokeAsync("AddUserGroup")
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

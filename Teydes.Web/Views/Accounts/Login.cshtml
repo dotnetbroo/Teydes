@@ -1,0 +1,38 @@
+﻿@using Teydes.Service.DTOs.Logins;
+@model LoginDto
+@{
+    Layout = "~/Views/Accounts/_AccountLayout.cshtml";
+}
+
+<div class="w-100 h-100">
+    <div class="w- lg-475px card shadow-sm w-400px mx-auto mb-20 ">
+        <div class="card-body py-8">
+            <form asp-area="" asp-controller="accounts" asp-action="login">
+                <div class="p-2">
+                    <h2 class="text-center text-dark">Shaxsiy kabinetga kirish</h2>
+                    <div>
+                        <label class="form-label mt-3" asp-for="PhoneNumber">Telefon raqam</label>
+                        <input type="text" asp-for="PhoneNumber" class="form-control form-control-lg form-control-solid" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span><br>
+                    </div>
+
+                    <div class="fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-stack mb-2">
+                            <label class="form-label fs-6 mb-0" asp-for="Password">Parol</label>
+                        </div>
+                        <input class="form-control form-control-lg form-control-solid" asp-for=Password type="password" name="password" autocomplete="off">
+                        <span asp-validation-for="Password" class="text-danger"></span><br>
+                    </div>
+                    <div class="d-grid mt-10">
+                        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary" asp-controller="accounts" asp-action="login">
+                            <span class="indicator-label">
+                                Kirish
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <script src="https://www.google.com/recaptcha/api.js"></script>
+            </form>
+        </div>
+    </div>

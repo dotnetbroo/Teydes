@@ -1,0 +1,36 @@
+﻿@using Teydes.Service.DTOs.UserGroups;
+
+@model UserGroupForUpdateDto
+@{
+    ViewBag.Tabb = 3;
+    var ModelId = ViewBag.teacherId;
+}
+
+<div class="card-body border-top @(ViewBag.Tabb == 1 ? "active":"")">
+
+    <form asp-controller="teacher" asp-action="AddTeacherGroup" asp-route-userId="@ModelId" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+        <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                <span>Guruh</span>
+                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"></i>
+            </label>
+            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                <select asp-for=GroupId class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" data-select2-id="select2-data-7-69qz" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                    @{
+                        var groups = ViewBag.Groups;
+                        foreach (var group in groups)
+                        {
+                            <option value="@group.Id">@group.Name</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a asp-area="" asp-controller="teacher" asp-action="index" class="btn btn-light btn-active-light-primary me-2">Chiqish</a>
+            <button type="submit" class="btn btn-primary">Tayinlash</button>
+        </div>
+    </form>
+</div>

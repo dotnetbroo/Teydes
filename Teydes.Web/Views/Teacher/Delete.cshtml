@@ -1,0 +1,60 @@
+﻿@using Teydes.Service.DTOs.Users;
+@model UserForResultDto
+@{
+    ViewBag.Tab = 6;
+}
+
+<div class="card card-rounded mt-5 mb-5">
+    <div class="mt-10 mx-10 me-10 mb-10">
+        <h3 class="fw-bold fs-2 text-gray-500 mb-10">O`qituvchini o'chirish</h3>
+        <div>
+            <p>
+                Ism Familiyasi :
+                <code>@Model.FirstName @Model.LastName</code>
+            </p>
+            <br />
+            <p>
+                Email va telefon raqami:
+                <code>@Model.PhoneNumber</code>
+            </p>
+            <p>
+                Id :
+                <code>@Model.Id</code>
+            </p>
+        </div>
+
+        <!--Alert::begin-->
+        <div class="alert alert-danger d-flex align-items-center p-5 mb-8 mt-8">
+            <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black"></rect>
+                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black"></rect>
+                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black"></rect>
+                </svg>
+            </span>
+            <div class="d-flex flex-column">
+                <h4 class="mb-1 text-danger">O'chirishdan avval o'ylab ko'ring!</h4>
+                <span>Ushbu ma'lumotni o'chirganingizdan keyin uni aslo ortga qaytara olmaysiz!</span>
+            </div>
+        </div>
+        <!--Alert::end-->
+        <!--begin::Form-->
+        <div class="card card-bordered">
+            <div class="my-8 mx-8 me-8">
+                <form asp-area="" asp-controller="teacher" asp-action="DeleteTeacher" asp-route-id="@Model.Id" method="post">
+                    <span>O'chirish uchun o`qituvchining <code>Id</code> sini kiriting!</span>
+                    <div class="mb-5 mt-5">
+                        <input type="number" class="form-control" asp-for="Id" value="@Model.Id" disabled />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="mb-5">
+                        <input type="submit" class="btn btn-danger" value="O'chirish" />
+                        <a asp-area="" asp-controller="teacher" asp-action="Index" class="btn btn-light mx-5">Bekor qilish</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--end::Form-->
+
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Teydes</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" asp-append-version="true">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+</head>
+<body>
+   @*  @RenderBody()
+    <!--begin::Javascript-->
+    <script src="~/js/jquery.bundle.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!--end::Javascript--> *@
+    @RenderBody()
+    <!--begin::Javascript-->
+    <script src="~/js/jquery.bundle.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!--end::Javascript-->
+</body>
+</html>
